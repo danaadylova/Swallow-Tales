@@ -50,7 +50,7 @@ def stories(request):
         return redirect('home')
     # my_stories_list = Story.objects.filter(author = request.user)
     first_sections_list = StorySection.objects.filter(previousSection = None)
-    return render(request, 'muh_storiez.html', {'first_sections_list':first_sections_list})
+    return render(request, 'muh_storiez.html', {'first_sections_list': first_sections_list})
 
 
 def add_story(request):
@@ -85,3 +85,19 @@ def edit_section(request, sectionID):
         section.update(secName = sectionName, text = sectionText)
         return redirect('muh-stories')
     return render(request, 'edit_sec.html', {'secName': section[0].secName, 'text': section[0].text})
+
+
+def add_alternative_section(request, sectionID):
+    section = (StorySection.objects.filter(pk = sectionID))[0]
+    if not request.user.is_authenticated():
+        return redirect('home')
+    if request.method == "POST":
+        sectionName = request.POST.get('secName')
+        sectionText = request.POST.get('text')
+
+        newSection = StorySection(previousSection = section.previousSection, author = request.user, story = section.story,
+                               secName =sectionName ,
+                               text = sectionText)
+        newSection.save()
+        return redirect('muh-stories')
+    return render(request, 'add_sec.html')

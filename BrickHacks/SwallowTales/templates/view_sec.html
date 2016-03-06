@@ -23,10 +23,14 @@
     {%  if my_stories_list|length == 0 %}
         <p>No Further Sections!</p>
         <br />
-        <button type="submit" class="btn btn-success">Add Alternative To Current Section</button>
+        {% if storySection.previousSection != None %}
+            <button type="submit" onclick='location.href="{% url 'SwallowTales.views.add_alternative_section' storySection.pk %}";' class="btn btn-success">Add Alternative To Current Section</button>
+        {%  endif %}
         <button type="submit" class="btn btn-success">Add Next Section</button>
     {%  else %}
-        <button type="submit" class="btn btn-success">Add Alternative To Current Section</button>
+        {% if storySection.previousSection != None %}
+            <button type="submit" onclick='location.href="{% url 'SwallowTales.views.add_alternative_section' storySection.pk %}";' class="btn btn-success">Add Alternative To Current Section</button>
+        {%  endif %}
     {% endif %}
 </div>
 
