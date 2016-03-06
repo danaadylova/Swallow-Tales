@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="view_sec">
+    <h1>{{ storySection.story.name }}</h1>
+    <h2>{{ storySection.secName }}</h2>
+    <p>{{ storySection.text }}</p>
+</div>
+<!-- secs = section in list_next, for next possible sections-->
+{% for secs in list_next %}
+    <li><a href="{{ link }}">{{ secs.secName }}</a></li>
+{% endfor %}
+
+{%endblock content %}
