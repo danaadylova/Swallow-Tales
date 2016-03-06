@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <div id="login">
+    <div id="sign_up_form">
+        <h1>Log In</h1>
         <form class="form-horizontal" name="LoginForm" action="/login/" method="post">
             {% csrf_token %}
             {% if next %}
