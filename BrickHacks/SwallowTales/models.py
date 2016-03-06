@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class User(models.Model):
+class Author(models.Model):
     user = models.OneToOneField(User)
     def __str__(self):
         return "{0}".format(self.user.username)
@@ -9,12 +9,14 @@ class User(models.Model):
 class Story(models.Model):
     author = models.ForeignKey(User)
     name = models.CharField(max_length = 100)
+    def __str__(self):
+        return "{0}".format(self.name)
 
 class StorySection(models.Model):
-    previousSection = models.ForeignKey("self", blank=True, related_name="children")
+    previousSection = models.ForeignKey("self",null = True, blank=True, related_name="children")
     author = models.ForeignKey(User)
     story = models.ForeignKey(Story)
-    name = models.CharField(max_length = 100)
+    secName = models.CharField(max_length = 100)
     text = models.TextField()
 
 class Bookmark(models.Model):

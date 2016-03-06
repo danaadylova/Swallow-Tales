@@ -3,8 +3,9 @@
 {% block content %}
 
 <div id="muh_stories">
-    <h1> Add New Story </h1>
+    <h1> Add a rNew Story </h1>
     <form class="form-horizontal" role="form" method="post">
+        {% csrf_token %}
         <div class="form-group">
             <label>Title:</label>
             <input type="text" name="name" class="form-control" id="name">

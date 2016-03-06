@@ -1,10 +1,10 @@
 __author__ = 'danaadylova'
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-# from SwallowTales.models import *
+from SwallowTales.models import *
 
 
-class UserForm(ModelForm):
+class StoryForm(ModelForm):
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+        model = Story
+        fields = ('name', 'text')
