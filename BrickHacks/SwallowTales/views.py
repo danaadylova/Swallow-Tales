@@ -27,6 +27,5 @@ def logout_view(request):
     logout(request)
     return render(request, 'home.html')
 
-
 def sign_up_view(request):
     return render(request, 'sign_up.html')
