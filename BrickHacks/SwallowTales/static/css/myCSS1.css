@@ -4,6 +4,11 @@
     margin-top: 3%;
 }
 
+#muh_stories {
+    margin: auto;
+    width: 70%;
+}
+
 * {
     font-family: Garamond;
 }
