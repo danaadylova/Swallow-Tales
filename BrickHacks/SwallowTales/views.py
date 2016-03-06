@@ -4,7 +4,7 @@ from django.template import RequestContext
 from SwallowTales.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import *
 # from SwallowTales.forms import StoryForm
 
 
@@ -46,16 +46,25 @@ def sign_up_view(request):
     return render(request, 'sign_up.html')
 
 def stories(request):
-    # if request.user.is_authenticated():
-    #     return redirect('muh-stories')
-    # if request.method == "POST":
-    #     name = request.POST.get('name')
-    #     text = request.POST.get('text')
-    #
-    #     story = User.objects.create_user(username=username, email=email, password=password)
-    #     return redirect('muh-stories')
-    return render(request, 'muh_storiez.html')
+    if not request.user.is_authenticated():
+        return redirect('home')
+    my_stories_list = Story.objects.filter(author = request.user)
+    return render(request, 'muh_storiez.html', {'my_stories_list': my_stories_list})
 
 
 def add_story(request):
+    if not request.user.is_authenticated():
+        return redirect('home')
+    if request.method == "POST":
+        storyName = request.POST.get('name')
+        sectionName = request.POST.get('secName')
+        sectionText = request.POST.get('text')
+
+        st = Story(author = request.user, name = storyName)
+        st.save()
+        section = StorySection(previousSection = None, author = request.user, story = st,
+                               secName =sectionName ,
+                               text = sectionText)
+        section.save()
+        return redirect('muh-stories')
     return render(request, 'add_story.html')

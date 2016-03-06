@@ -127,8 +127,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # STATICFILES_DIRS = (
 #     os.path.join(os.path.dirname(__file__), "static")
 # )
-
-
-# LOGIN_URL = reverse_lazy('login')
-# LOGIN_REDIRECT_URL = reverse_lazy('/login/')
-# LOGIN_REDIRECT_URL = 'main_home'

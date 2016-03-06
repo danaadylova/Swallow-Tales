@@ -9,8 +9,8 @@
     </div>
     <div>
         <ul>
-        {% for link, name in my_stories_list %}
-            <li><a href="{{ link }}">{{ name }}</a></li>
+        {% for story in my_stories_list %}
+            <li><a href="{{ link }}">{{ story.name }}</a></li>
         {% endfor %}
         </ul>
     
