@@ -1,29 +1,46 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>{% block page_title%} SwallowTales {% endblock page_title%}</title>
-    {% block head %}{% endblock head %}
+    <title>SwallowTales</title>
+    <!-- some django magic? -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="static/css/myCSS1.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
+    <script src="static/js/bootstrap.min.js"></script>
+    <link rel="icon" type="/static/image/ico" href="static/img/swicon.png" />
 </head>
 
-<header>
-    <h1>{% block header %} The header {% endblock header %}</h1>
-</header>
-
-
-<div class="container" >
-    <div class = "nav" >
-        <div class = "navagation">
-            {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}.</p>
-            {% endif %}
-            </ul>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="pull-left" href="/">
+                    <div><img id="logo" src="/img/swallowtales.png"/></div>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Muh Storiez</a></li>
+                    <li><a href="#">Bookmarks</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="sign_up.html">Sign Up</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-
-    <div class ="content">
-        {% block content %}
-        {% endblock content %}
-    </div>
-</div>
+    </nav>
+    {% block content %}
+    {% endblock content %}
+    
 </body>
 
 </html>

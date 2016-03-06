@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{%block content %} 
+<div id="sign_up_form">
+    <h1>Sign up now</h1>
+    <!-- sign up form -->
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" method="post">
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" name="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+                <label for="password_conf">Retype Password:</label>
+                <input type="password" name="password_conf" class="form-control" id="password_conf">
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="static/js/pwstrength-bootstrap-1.2.10.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#password').pwstrength({
+            ui: { showVerdictsInsideProgressBar: true }
+        });
+    })
+</script>
+{%endblock content %}
