@@ -4,7 +4,8 @@ from django.template import RequestContext
 from SwallowTales.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import login, logout
-from SwallowTales.forms import UserForm
+from django.contrib.auth.models import User
+
 
 def startPage(request):
     return render(request, 'home.html')
@@ -27,18 +28,21 @@ def logout_view(request):
     return redirect('home')
 
 def sign_up_view(request):
+    if request.user.is_authenticated():
+        return redirect('home')
     if request.method == "POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            new_user = User.objects.create_user(**form.cleaned_data)
-            new_user.save()
-            # redirect, or however you want to get to the main view
-            return redirect('SwallowTales.views.login_view')
-        else:
-            return redirect('SwallowTales.views.sign_up_view')
-    else:
-        form = UserForm()
-    return render(request, 'sign_up.html', {'form': form})
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password_conf = request.POST.get('password_conf')
+        if password != password_conf:
+            return redirect('signup')
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.is_active = True
+        user.save()
+        var = authenticate(username=username, password=password)
+        return redirect('home')
+    return render(request, 'sign_up.html')
 
 def stories(request):
     return render(request, 'muh_storiez.html')

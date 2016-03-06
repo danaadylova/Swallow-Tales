@@ -2,38 +2,35 @@
 
 {%block content %} 
 <div id="sign_up_form">
+    {% if error %}
+        <div class="alert alert-danger">
+            <strong>Error!</strong> {{error}}
+        </div>
+    {% endif %}
     <h1>Sign up now</h1>
     <!-- sign up form -->
     <div class="panel-body">
         <form class="form-horizontal" role="form" method="post">
-            {{ form.non_field_errors }}
+            {% csrf_token %}
             <div class="form-group">
-                {{ form.email.errors }}
-                <label for="{{ form.email.id_for_label }}">Email address:</label>
-                {{ form.email }}
-{#                <input type="email" name="email" class="form-control" id="email">#}
+                <label for="email">Email address:</label>
+                <input type="email" name="email" class="form-control" id="email">
             </div>
             <div class="form-group">
-                {{ form.username.errors }}
-                <label for="{{ form.username.id_for_label }}">Username:</label>
-                {{ form.username }}
-{#                <input type="text" name="username" class="form-control" id="username">#}
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="form-control" id="username">
             </div>
             <div class="form-group">
-                {{ form.password.errors }}
                 <label for="password">Password:</label>
-                {{ form.password }}
-{#                <input type="password" name="password" class="form-control" id="password">#}
+                <input type="password" name="password" class="form-control" id="password">
             </div>
             <div class="form-group">
-                {{ form.passwordConf.errors }}
-                <label for="passwordConf">Retype Password:</label>
-                {{ form.passwordConf }}
-{#                <input type="password" name="password_conf" class="form-control" id="password_conf">#}
+                <label for="password_conf">Retype Password:</label>
+                <input type="password" name="password_conf" class="form-control" id="password_conf">
             </div>
-{#            <div class="checkbox">#}
-{#                <label><input type="checkbox"> Remember me</label>#}
-{#            </div>#}
+            <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
             <button type="submit" class="btn btn-default">Sign Up</button>
         </form>
     </div>
