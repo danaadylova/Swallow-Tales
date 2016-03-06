@@ -1,5 +1,7 @@
 __author__ = 'danaadylova'
 from django.contrib.auth.models import User
+from django.forms import ModelForm
+
 
 class UserForm(ModelForm):
     class Meta:
