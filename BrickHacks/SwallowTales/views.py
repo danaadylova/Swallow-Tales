@@ -75,7 +75,7 @@ def add_story(request):
                                secName =sectionName ,
                                text = sectionText)
         section.save()
-        section.story.update(LastDate=datetime.now)
+        #section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'add_story.html')
 
@@ -92,7 +92,7 @@ def edit_section(request, sectionID):
         sectionName = request.POST.get('secName')
         sectionText = request.POST.get('text')
         section.update(secName = sectionName, text = sectionText)
-        section.story.update(LastDate=datetime.now)
+        #section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'edit_sec.html', {'secName': section[0].secName, 'text': section[0].text})
 
@@ -108,7 +108,7 @@ def add_alternative_section(request, sectionID):
                                secName =sectionName ,
                                text = sectionText)
         newSection.save()
-        section.story.update(LastDate=datetime.now)
+        #section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'add_sec.html')
 
@@ -123,6 +123,6 @@ def add_next_section(request, sectionID):
                                   secName =sectionName ,
                                   text = sectionText)
         newSection.save()
-        section.story.update(LastDate=datetime.now)
+        #section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'add_sec.html')
