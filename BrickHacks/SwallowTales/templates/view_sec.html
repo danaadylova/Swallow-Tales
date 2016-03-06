@@ -3,6 +3,7 @@
 {% block content %}
 
 <div id="muh_stories">
+    <button type="button" style="margin-bottom: 2%;" onclick='location.href="{% url 'SwallowTales.views.edit_section' storySection.pk %}";' class="btn btn-success">Edit Current Section</button>
     <div class="panel panel-info">
         <div class="panel-heading">
             <h1>{{ storySection.story.name }}</h1>

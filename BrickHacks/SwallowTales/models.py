@@ -18,6 +18,9 @@ class StorySection(models.Model):
     story = models.ForeignKey(Story)
     secName = models.CharField(max_length = 100)
     text = models.TextField()
+    #def update (newSecName, newText):
+     #   self.secName = newSecName
+      #  self.text = newText
 
 
 class Bookmark(models.Model):
