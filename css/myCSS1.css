@@ -4,11 +4,16 @@
     margin-top: 3%;
 }
 
+* {
+    font-family: Garamond;
+}
+
 .navbar {
     background-color: #4B92DB;
     background-image: none;
     background-repeat: no-repeat;
     border-color: #4B92DB;
+    font-family: Garamond;
 }
 
 .navbar .nav li > a {
@@ -38,4 +43,8 @@
 
 .navbar-inverse .navbar-collapse {
         border-color: white;
+}
+
+#logo {
+    max-width: 100px;
 }
