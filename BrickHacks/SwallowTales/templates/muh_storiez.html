@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> My Stories </h1>
+<div>
+    <button type="button" class="btn btn-success pull-right">+ New</button>
+</div>
+<div class="container-fluid sign_up_form">
+    <ul>
+    {% for link, name in my_stories_list %}
+        <li><a href="{{ link }}">{{ name }}</a></li>
+    {% endfor %}
+    </ul>
+    
+</div>
+
+{% endblock content %}
