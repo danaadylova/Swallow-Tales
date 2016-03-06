@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="muh_stories">
+    <h1> My Stories </h1>
+    <div>
+        <button type="button" onclick="location.href='/add-story/';" class="btn btn-success pull-right">+ New</button>
+    </div>
+    <div>
+        <ul>
+        {% for section in first_sections_list %}
+            <li><a href="{% url 'SwallowTales.views.view_section' section.pk %}">{{ section.story.name }}</a></li>
+        {% endfor %}
+        </ul>
+    
+    </div>
+</div>
+
+
+{% endblock content %}
