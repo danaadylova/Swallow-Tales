@@ -4,6 +4,7 @@ from django.template import RequestContext
 from SwallowTales.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import login, logout
+# from forms import UserForm
 
 # Create your views here.
 
@@ -27,5 +28,19 @@ def logout_view(request):
     logout(request)
     return render(request, 'home.html')
 
-def sign_up_view(request):
-    return render(request, 'sign_up.html')
+# def sign_up_view(request):
+#     if request.method == "POST":
+#         form = UserForm(request.POST)
+#         if form.is_valid():
+#             new_user = User.objects.create_user(**form.cleaned_data)
+#             new_user.save()
+#             # redirect, or however you want to get to the main view
+#             return redirect('SwallowTales.views.login_view')
+#         else:
+#             return redirect('SwallowTales.views.sign_up_view')
+#     else:
+#         form = UserForm()
+#     return render(request, 'sign_up.html')
+
+def stories(request):
+    return render(request, 'muh_storiez.html')
