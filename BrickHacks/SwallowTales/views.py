@@ -6,10 +6,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import *
 # from SwallowTales.forms import StoryForm
+from datetime import datetime
 
 
 def startPage(request):
-    return render(request, 'home.html')
+    #recent_list = Story.objects.order_by("LastDate").reverse()
+    first_sections_list = StorySection.objects.filter(previousSection = None)
+    # print (first_sections_list)
+    return render(request, 'home.html', {'first_sections_list': first_sections_list})
+    #if len(recent_list) > 10:
+     #   recent_list = recent_list[:10]
+        #recent_list_sections = StorySection.objects.filter(story.pk = item.pk, previousSection = None)[0]
+    #return render(request, 'home.html', {'recent_list': recent_list_sections})
 
 def login_view(request):
     logout(request)
@@ -49,7 +57,7 @@ def stories(request):
     if not request.user.is_authenticated():
         return redirect('home')
     # my_stories_list = Story.objects.filter(author = request.user)
-    first_sections_list = StorySection.objects.filter(previousSection = None)
+    first_sections_list = StorySection.objects.filter(previousSection = None, author = request.user)
     return render(request, 'muh_storiez.html', {'first_sections_list': first_sections_list})
 
 
@@ -67,6 +75,7 @@ def add_story(request):
                                secName =sectionName ,
                                text = sectionText)
         section.save()
+        section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'add_story.html')
 
@@ -83,6 +92,7 @@ def edit_section(request, sectionID):
         sectionName = request.POST.get('secName')
         sectionText = request.POST.get('text')
         section.update(secName = sectionName, text = sectionText)
+        section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'edit_sec.html', {'secName': section[0].secName, 'text': section[0].text})
 
@@ -98,6 +108,7 @@ def add_alternative_section(request, sectionID):
                                secName =sectionName ,
                                text = sectionText)
         newSection.save()
+        section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'add_sec.html')
 
@@ -112,5 +123,6 @@ def add_next_section(request, sectionID):
                                   secName =sectionName ,
                                   text = sectionText)
         newSection.save()
+        section.story.update(LastDate=datetime.now)
         return redirect('muh-stories')
     return render(request, 'add_sec.html')

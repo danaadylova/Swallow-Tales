@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+
 
 class Author(models.Model):
     user = models.OneToOneField(User)
@@ -9,6 +11,7 @@ class Author(models.Model):
 class Story(models.Model):
     author = models.ForeignKey(User)
     name = models.CharField(max_length = 100)
+    LastDate = models.DateTimeField(default=datetime.now)
     def __str__(self):
         return "{0}".format(self.name)
 

@@ -4,8 +4,9 @@
 
 <div class="container-fluid sign_up_form">
     <ul>
-    {% for link, name in stories_list %}
-        <li><a href="{{ link }}">{{ name }}</a></li>
+    {% for section in first_sections_list %}
+
+        <li><a href="{% url 'SwallowTales.views.view_section' section.pk %}">{{ section.story.name }}</a> by: {{ section.author.username }}</li>
     {% endfor %}
     </ul>
     
