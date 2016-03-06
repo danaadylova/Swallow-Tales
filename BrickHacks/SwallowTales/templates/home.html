@@ -3,7 +3,11 @@
 {% block content %}
 
 <div class="container-fluid" id="muh_stories">
-    <h1>Welcome, {{ request.user.username }}!</h1>
+    {% if user.is_authenticated %}
+        <h1>Welcome, {{ request.user.username }}!</h1>
+    {% else %}
+        <h1>Welcome!</h1>
+    {% endif %}
     <h4>Here are our most recent stories:</h4>
     <ul>
     {% for section in first_sections_list %}
