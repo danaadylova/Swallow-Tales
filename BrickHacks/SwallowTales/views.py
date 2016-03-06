@@ -74,3 +74,20 @@ def view_section(request, sectionID):
     storySection = StorySection.objects.filter(pk = sectionID)
     my_stories_list = StorySection.objects.filter(previousSection = sectionID)
     return render(request, 'view_sec.html', {'my_stories_list': my_stories_list, 'storySection': storySection[0]})
+
+def edit_section(request):
+    if not request.user.is_authenticated():
+        return redirect('home')
+    if request.method == "POST":
+        storyName = request.POST.get('name')
+        sectionName = request.POST.get('secName')
+        sectionText = request.POST.get('text')
+
+        st = Story(author = request.user, name = storyName)
+        st.save()
+        section = StorySection(previousSection = None, author = request.user, story = st,
+                               secName =sectionName ,
+                               text = sectionText)
+        section.save()
+        return redirect('muh-stories')
+    return render(request, 'add_story.html')

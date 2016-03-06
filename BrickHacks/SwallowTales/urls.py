@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^signup/', views.sign_up_view, name='signup'),
     url(r'^muh-stories/', views.stories, name='muh-stories'),
     url(r'^add-story/', views.add_story, name='add-story'),
-    # url(r'^edit-story/', views.edit_story, name='edit-story'),
+    url(r'^edit_section/', views.edit_section, name='edit_section'),
     url(r'^view_section/([0-9]+)/', views.view_section, name='view_section'),
     ]
