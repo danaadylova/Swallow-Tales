@@ -8,23 +8,18 @@
             {% if next %}
                 <input type="hidden" name="next" value="{{ next }}" />
             {% endif %}
-            <div class="control-group">
-                <label class="control-label" for="username">Username</label>
-                <div class="controls">
-                    <input type="text" id="username" name="username"  placeholder="Username">
-                </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="form-control" id="username">
             </div>
-            <div class="control-group">
-                <label class="control-label" for="password">Password</label>
-                <div class="controls">
-                    <input type="password" name="password" id="password" placeholder="Password">
-                </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control" id="password">
             </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button type="submit" class="btn">Login</button>
-                </div>
+            <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
             </div>
+            <button type="submit" class="btn btn-default">Log In</button>
         </form>
     </div>
 {%endblock content %}
