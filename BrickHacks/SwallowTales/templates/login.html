@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{%block page_title%} The title {%endblock page_title%}
-
-{%block content %}
+{% block content %}
     <div id="login">
         <form class="form-horizontal" name="LoginForm" action="/login/" method="post">
             {% csrf_token %}
@@ -27,4 +25,4 @@
             </div>
         </form>
     </div>
-{%endblock content %}
+{% endblock content %}
