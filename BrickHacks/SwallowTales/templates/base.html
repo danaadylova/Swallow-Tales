@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>{% block page_title%} SwallowTales {% endblock page_title%}</title>
+    {% block head %}{% endblock head %}
+</head>
+
+<header>
+    <h1>{% block header %} The header {% endblock header %}</h1>
+</header>
+
+
+<div class="container" >
+    <div class = "nav" >
+        <div class = "navagation">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}.</p>
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class ="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+</body>
+
+</html>
