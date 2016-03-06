@@ -38,7 +38,7 @@ def sign_up_view(request):
             return redirect('SwallowTales.views.sign_up_view')
     else:
         form = UserForm()
-    return render(request, 'sign_up.html')
+    return render(request, 'sign_up.html', {'form': form})
 
 def stories(request):
     return render(request, 'muh_storiez.html')
