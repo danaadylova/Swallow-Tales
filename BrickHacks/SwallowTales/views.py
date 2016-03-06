@@ -48,8 +48,9 @@ def sign_up_view(request):
 def stories(request):
     if not request.user.is_authenticated():
         return redirect('home')
-    my_stories_list = Story.objects.filter(author = request.user)
-    return render(request, 'muh_storiez.html', {'my_stories_list': my_stories_list})
+    # my_stories_list = Story.objects.filter(author = request.user)
+    first_sections_list = StorySection.objects.filter(previousSection = None)
+    return render(request, 'muh_storiez.html', {'first_sections_list':first_sections_list})
 
 
 def add_story(request):
@@ -68,3 +69,8 @@ def add_story(request):
         section.save()
         return redirect('muh-stories')
     return render(request, 'add_story.html')
+
+def view_section(request, sectionID):
+    storySection = StorySection.objects.filter(pk = sectionID)
+    my_stories_list = StorySection.objects.filter(previousSection = sectionID)
+    return render(request, 'view_sec.html', {'my_stories_list': my_stories_list, 'storySection': storySection[0]})

@@ -9,8 +9,8 @@
     </div>
     <div>
         <ul>
-        {% for story in my_stories_list %}
-            <li><a href="{{ link }}">{{ story.name }}</a></li>
+        {% for section in first_sections_list %}
+            <li><a href="{% url 'SwallowTales.views.view_section' section.pk %}">{{ section.story.name }}</a></li>
         {% endfor %}
         </ul>
     

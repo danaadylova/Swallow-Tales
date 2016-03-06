@@ -2,14 +2,31 @@
 
 {% block content %}
 
-<div id="view_sec">
-    <h1>{{ storySection.story.name }}</h1>
-    <h2>{{ storySection.secName }}</h2>
-    <p>{{ storySection.text }}</p>
+<div id="muh_stories">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h1>{{ storySection.story.name }}</h1>
+            <h3>{{ storySection.secName }}</h3>
+        </div>
+        <div class="panel-body">{{ storySection.text }}</div>
+    </div>
 </div>
 <!-- secs = section in list_next, for next possible sections-->
-{% for secs in list_next %}
-    <li><a href="{{ link }}">{{ secs.secName }}</a></li>
-{% endfor %}
+<br />
+<div id="muh_stories">
+    <h4>Possible Continuations</h4>
+    {% for sec in my_stories_list %}
+        <li><a href="{% url 'SwallowTales.views.view_section' sec.id %}">{{ sec.secName }}</a></li>
+    {% endfor %}
+    <br />
+    {%  if my_stories_list|length == 0 %}
+        <p>No Further Sections!</p>
+        <br />
+        <button type="submit" class="btn btn-success">Add Alternative To Current Section</button>
+        <button type="submit" class="btn btn-success">Add Next Section</button>
+    {%  else %}
+        <button type="submit" class="btn btn-success">Add Alternative To Current Section</button>
+    {% endif %}
+</div>
 
 {%endblock content %}
