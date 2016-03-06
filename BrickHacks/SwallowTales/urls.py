@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^edit_section/([0-9]+)/', views.edit_section, name='edit_section'),
     url(r'^view_section/([0-9]+)/', views.view_section, name='view_section'),
     url(r'^add_alternative_section/([0-9]+)/', views.add_alternative_section, name='add_alternative_section'),
+    url(r'^add_next_section/([0-9]+)/', views.add_next_section, name='add_next_section'),
     ]

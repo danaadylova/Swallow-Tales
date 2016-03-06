@@ -94,10 +94,23 @@ def add_alternative_section(request, sectionID):
     if request.method == "POST":
         sectionName = request.POST.get('secName')
         sectionText = request.POST.get('text')
-
         newSection = StorySection(previousSection = section.previousSection, author = request.user, story = section.story,
                                secName =sectionName ,
                                text = sectionText)
+        newSection.save()
+        return redirect('muh-stories')
+    return render(request, 'add_sec.html')
+
+def add_next_section(request, sectionID):
+    section = (StorySection.objects.filter(pk = sectionID))[0]
+    if not request.user.is_authenticated():
+        return redirect('home')
+    if request.method == "POST":
+        sectionName = request.POST.get('secName')
+        sectionText = request.POST.get('text')
+        newSection = StorySection(previousSection = section, author = request.user, story = section.story,
+                                  secName =sectionName ,
+                                  text = sectionText)
         newSection.save()
         return redirect('muh-stories')
     return render(request, 'add_sec.html')

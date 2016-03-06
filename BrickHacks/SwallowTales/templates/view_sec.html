@@ -3,11 +3,14 @@
 {% block content %}
 
 <div id="muh_stories">
+    {%  if request.user.id == storySection.author.id %}
     <button type="button" style="margin-bottom: 2%;" onclick='location.href="{% url 'SwallowTales.views.edit_section' storySection.pk %}";' class="btn btn-success">Edit Current Section</button>
+    {%  endif %}
     <div class="panel panel-info">
         <div class="panel-heading">
             <h1>{{ storySection.story.name }}</h1>
             <h3>{{ storySection.secName }}</h3>
+            <h4>Author: {{ storySection.author.username }}</h4>
         </div>
         <div class="panel-body">{{ storySection.text }}</div>
     </div>
@@ -17,7 +20,7 @@
 <div id="muh_stories">
     <h4>Possible Continuations</h4>
     {% for sec in my_stories_list %}
-        <li><a href="{% url 'SwallowTales.views.view_section' sec.id %}">{{ sec.secName }}</a></li>
+        <li><a href="{% url 'SwallowTales.views.view_section' sec.id %}">{{ sec.secName }}</a> by: {{ sec.author.username }}</li>
     {% endfor %}
     <br />
     {%  if my_stories_list|length == 0 %}
@@ -26,7 +29,7 @@
         {% if storySection.previousSection != None %}
             <button type="submit" onclick='location.href="{% url 'SwallowTales.views.add_alternative_section' storySection.pk %}";' class="btn btn-success">Add Alternative To Current Section</button>
         {%  endif %}
-        <button type="submit" class="btn btn-success">Add Next Section</button>
+        <button type="submit" onclick='location.href="{% url 'SwallowTales.views.add_next_section' storySection.pk %}";' class="btn btn-success">Add Next Section</button>
     {%  else %}
         {% if storySection.previousSection != None %}
             <button type="submit" onclick='location.href="{% url 'SwallowTales.views.add_alternative_section' storySection.pk %}";' class="btn btn-success">Add Alternative To Current Section</button>
