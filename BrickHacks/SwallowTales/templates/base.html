@@ -27,20 +27,23 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Muh Storiez</a></li>
-                    <li><a href="#">Bookmarks</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="#">Muh Storiez</a></li>
+                        <li><a href="#">Bookmarks</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/signup/">Sign Up</a></li>
-                    <li><a href="/login/">Login</a></li>
-                    <li><a href="#">Logout</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="#">Logout</a></li>
+                    {% else %}
+                        <li><a href="/signup/">Sign Up</a></li>
+                        <li><a href="/login/">Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
     {% block content %}
     {% endblock content %}
-    
 </body>
-
 </html>
