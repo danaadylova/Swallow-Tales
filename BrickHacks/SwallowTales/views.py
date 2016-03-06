@@ -5,6 +5,7 @@ from SwallowTales.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+# from SwallowTales.forms import StoryForm
 
 
 def startPage(request):
@@ -45,4 +46,16 @@ def sign_up_view(request):
     return render(request, 'sign_up.html')
 
 def stories(request):
+    # if request.user.is_authenticated():
+    #     return redirect('muh-stories')
+    # if request.method == "POST":
+    #     name = request.POST.get('name')
+    #     text = request.POST.get('text')
+    #
+    #     story = User.objects.create_user(username=username, email=email, password=password)
+    #     return redirect('muh-stories')
     return render(request, 'muh_storiez.html')
+
+
+def add_story(request):
+    return render(request, 'add_story.html')
